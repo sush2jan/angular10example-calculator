@@ -1,7 +1,6 @@
 pipeline {
   agent any
   tools {nodejs "node"}
-  source ~/.bash_profile
 
   stages {
     stage('Install') {
@@ -9,6 +8,7 @@ pipeline {
     }
 
     stage('Test') {
+      steps { sh 'source ~/.bash_profile' }
       parallel {
         stage('Static code analysis') {
             steps { sh 'npm run-script lint' }
