@@ -5,7 +5,6 @@ pipeline {
   stages {
     stage('Install') {
       steps {
-        sh 'npm install karma-firefox-launcher --save-dev'
         sh 'npm install -g @angular/cli@next'
       }
     }
@@ -29,14 +28,13 @@ pipeline {
 
     stage('Build') {
       steps {
-//        sh 'npm run-script build'
         sh """
           cd ${WORKSPACE}
-          npm install
           ng build --prod
           if [ -d dist ]
           then
               aws s3 cp dist s3://pm-ansible-ui-app-bucket --acl public-read --recursive
+              aws cloudfront create-invalidation --distribution-id EUQ73ZEC9O6F1 --paths "/*"
           else
               echo “dist folder not found”
           exit 1
