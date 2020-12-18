@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Unit tests') {
             steps {
-              sh 'npm install karma-coverage-istanbul-reporter --save-dev'
+              sh 'export CHROME_BIN=/snap/bin/chromium'
               sh 'npm run-script test'
             }
         }
