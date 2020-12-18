@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('Install') {
       steps {
-        sh 'export CHROME_BIN=/usr/bin/chromium'
+        sh 'npm install karma-firefox-launcher --save-dev'
         sh 'npm install -g @angular/cli@next'
       }
     }
