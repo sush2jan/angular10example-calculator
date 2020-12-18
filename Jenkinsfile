@@ -4,7 +4,10 @@ pipeline {
 
   stages {
     stage('Install') {
-      steps { sh 'npm install -g @angular/cli@next' }
+      steps {
+        sh 'export CHROME_BIN=/usr/bin/chromium'
+        sh 'npm install -g @angular/cli@next'
+      }
     }
 
     stage('Test') {
@@ -17,7 +20,6 @@ pipeline {
         }
         stage('Unit tests') {
             steps {
-              sh '. ~/.bash_profile'
               sh 'npm run-script test'
             }
         }
