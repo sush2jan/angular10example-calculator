@@ -8,13 +8,15 @@ pipeline {
     }
 
     stage('Test') {
-      steps { sh 'source ~/.bash_profile' }
       parallel {
         stage('Static code analysis') {
             steps { sh 'npm run-script lint' }
         }
         stage('Unit tests') {
-            steps { sh 'npm run-script test' }
+            steps {
+              sh 'source ~/.bash_profile'
+              sh 'npm run-script test'
+            }
         }
       }
     }
