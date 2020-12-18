@@ -1,4 +1,3 @@
-SHELL := /bin/bash
 pipeline {
   agent any
   tools {nodejs "node"}
@@ -18,7 +17,7 @@ pipeline {
         }
         stage('Unit tests') {
             steps {
-              sh 'source ~/.bash_profile'
+              sh '. ~/.bash_profile'
               sh 'npm run-script test'
             }
         }
