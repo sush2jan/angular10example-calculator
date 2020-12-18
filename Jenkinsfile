@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Unit tests') {
             steps {
-              sh 'npm install istanbul'
+              sh 'npm install karma-coverage-istanbul-reporter --save-dev'
               sh 'npm run-script test'
             }
         }
