@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 pipeline {
   agent any
   tools {nodejs "node"}
