@@ -36,7 +36,7 @@ pipeline {
           ng build --prod
           if [ -d dist ]
           then
-              aws s3 cp ./dist/ --recursive s3://pm-ansible-ui-app-bucket --acl public-read
+              aws s3 cp dist s3://pm-ansible-ui-app-bucket --acl public-read --recursive
           else
               echo “dist folder not found”
           exit 1
