@@ -20,8 +20,7 @@ pipeline {
         }
         stage('Unit tests') {
             steps {
-              sh 'npm uninstall -g karma'
-              sh 'npm install -g karma-cli'
+              sh 'npm install istanbul'
               sh 'npm run-script test'
             }
         }
