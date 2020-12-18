@@ -28,7 +28,21 @@ pipeline {
 //    }
 
     stage('Build') {
-      steps { sh 'npm run-script build' }
+      steps {
+        sh 'npm run-script build'
+        sh """
+          cd ${WORKSPACE}
+          npm install
+          ng build — prod
+          if [ -d dist ]
+          then
+              aws s3 cp ./dist/ --recursive s3://pm-ansible-ui-app-bucket --acl public-read
+          else
+              echo “dist folder not found”
+          exit 1
+          fi
+        """
+      }
     }
   }
 }
