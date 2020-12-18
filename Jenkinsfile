@@ -10,7 +10,10 @@ pipeline {
     stage('Test') {
       parallel {
         stage('Static code analysis') {
-            steps { sh 'npm run-script lint' }
+            steps {
+              sh 'npm update'
+              sh 'npm run-script lint'
+            }
         }
         stage('Unit tests') {
             steps {
