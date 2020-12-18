@@ -1,6 +1,7 @@
 pipeline {
   agent any
   tools {nodejs "node"}
+  source ~/.bash_profile
 
   stages {
     stage('Install') {
